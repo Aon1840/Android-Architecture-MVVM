@@ -1,0 +1,2 @@
+rootProject.name='Android-CleanArchitecture-MVVM'
+include ':app'
