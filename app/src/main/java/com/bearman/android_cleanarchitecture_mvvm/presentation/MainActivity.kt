@@ -1,7 +1,8 @@
-package com.bearman.android_cleanarchitecture_mvvm
+package com.bearman.android_cleanarchitecture_mvvm.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.bearman.android_cleanarchitecture_mvvm.R
 
 class MainActivity : AppCompatActivity() {
 
