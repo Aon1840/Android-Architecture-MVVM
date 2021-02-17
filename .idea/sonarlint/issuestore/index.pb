@@ -23,3 +23,17 @@ m
 =core/src/main/java/com/bearman/core/usecase/AddNoteUseCase.kt,e/c/ec15813b48aa3adf90925e68e3e7f32b70adf591
 Y
 )app/src/main/res/layout/fragment_note.xml,7/0/7017bb75d248f2c94ae5ff42e2c08cb68cb43290
+á
+Wapp/src/main/java/com/bearman/android_cleanarchitecture_mvvm/framework/db/NoteEntity.kt,1/2/12cc3d689e13b63b9278930d2f0e7267119c4003
+Ñ
+Tapp/src/main/java/com/bearman/android_cleanarchitecture_mvvm/framework/db/NoteDao.kt,8/b/8bdea09f125dd81b59759380b027208ae605c0bb
+å
+\app/src/main/java/com/bearman/android_cleanarchitecture_mvvm/framework/db/DatabaseService.kt,e/5/e5309c83eea45f33da032297a8f988686829bff9
+è
+_app/src/main/java/com/bearman/android_cleanarchitecture_mvvm/framework/db/RoomNoteDataSource.kt,0/9/093167abdf5fe6e637019d65f2c446e49121c4eb
+Ö
+Uapp/src/main/java/com/bearman/android_cleanarchitecture_mvvm/framework/db/UseCases.kt,c/a/cac991d4e6aa2b430a793f7ef65e28f09c30cb8a
+á
+Wapp/src/main/java/com/bearman/android_cleanarchitecture_mvvm/framework/NoteViewModel.kt,8/8/887fe027a775c43d088962d6c973db5d20633d75
+á
+Wapp/src/main/java/com/bearman/android_cleanarchitecture_mvvm/framework/ListViewModel.kt,e/2/e25d85e1469d84c034e2e099bb7a770d496d8b6a
