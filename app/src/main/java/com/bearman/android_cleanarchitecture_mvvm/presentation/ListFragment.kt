@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
+import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.bearman.android_cleanarchitecture_mvvm.R
 import com.bearman.android_cleanarchitecture_mvvm.framework.ListViewModel
@@ -19,6 +20,7 @@ import kotlinx.android.synthetic.main.fragment_list.*
  */
 class ListFragment : Fragment() {
 
+    private val notesListAdapter = NoteListAdapter(arrayListOf())
     private lateinit var viewModel: ListViewModel
 
     override fun onCreateView(
@@ -31,12 +33,21 @@ class ListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        noteListView.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = notesListAdapter
+        }
+
+        addNoteButton.setOnClickListener { goToNoteDetail() }
+
         viewModel = ViewModelProviders.of(this).get(ListViewModel::class.java)
 
-        Log.d("TEST", "ALL : ${viewModel.getAllNote()}")
-
         observerList()
-        addNoteButton.setOnClickListener { goToNoteDetail() }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.getAllNote()
     }
 
     private fun goToNoteDetail(id: Long = 0L) {
@@ -45,8 +56,10 @@ class ListFragment : Fragment() {
     }
 
     private fun observerList() {
-        viewModel.noteList.observe(this, Observer {
-            Log.d("TEST", "ALL : $it")
+        viewModel.noteList.observe(this, Observer { noteList ->
+            loadingView.visibility = View.GONE
+            noteListView.visibility = View.VISIBLE
+            notesListAdapter.updateNote(noteList.sortedByDescending { it.updateTime })
         })
     }
 
