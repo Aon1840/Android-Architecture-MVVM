@@ -32,7 +32,7 @@ class ListViewModel(application: Application) : AndroidViewModel(application) {
 
     fun getAllNote() {
         coroutineScope.launch {
-            noteList.postValue(useCases.getAllNotes.invoke())
+            noteList.postValue(useCases.getAllNotes())
         }
     }
 }

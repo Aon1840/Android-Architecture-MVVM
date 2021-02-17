@@ -1,7 +1,6 @@
 package com.bearman.android_cleanarchitecture_mvvm.presentation
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -18,9 +17,9 @@ import kotlinx.android.synthetic.main.fragment_list.*
 /**
  * A simple [Fragment] subclass.
  */
-class ListFragment : Fragment() {
+class ListFragment : Fragment(), ListAction {
 
-    private val notesListAdapter = NoteListAdapter(arrayListOf())
+    private val notesListAdapter = NoteListAdapter(arrayListOf(), this)
     private lateinit var viewModel: ListViewModel
 
     override fun onCreateView(
@@ -48,6 +47,10 @@ class ListFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         viewModel.getAllNote()
+    }
+
+    override fun onClick(id: Long) {
+        goToNoteDetail(id)
     }
 
     private fun goToNoteDetail(id: Long = 0L) {

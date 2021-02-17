@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -19,6 +20,7 @@ import kotlinx.android.synthetic.main.fragment_note.*
 
 class NoteFragment : Fragment() {
 
+    private var noteId = 0L
     private lateinit var viewModel: NoteViewModel
     private var currentNote = Note("", "", 0L, 0L)
 
@@ -33,6 +35,14 @@ class NoteFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel = ViewModelProviders.of(this).get(NoteViewModel::class.java)
+
+        arguments?.let {
+            noteId = NoteFragmentArgs.fromBundle(it).noteId
+        }
+
+        if (noteId != 0L) {
+            viewModel.getNote(noteId)
+        }
 
         checkButton.setOnClickListener {
             if (titleView.text.toString() != "" || contentView.text.toString() != "") {
@@ -59,6 +69,15 @@ class NoteFragment : Fragment() {
                 hideKeyboard()
             } else {
                 Toast.makeText(context, "Something went wrong!", Toast.LENGTH_LONG).show()
+            }
+        })
+
+
+        viewModel.currentNote.observe(this, Observer { note ->
+            note?.let {
+                currentNote = it
+                titleView.setText(it.title, TextView.BufferType.EDITABLE)
+                contentView.setText(it.content, TextView.BufferType.EDITABLE)
             }
         })
     }
